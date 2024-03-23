@@ -1,3 +1,4 @@
+#!/usr/bin/pup
 # puppet manifest to create a file
 
 file { '/tmp/school':
