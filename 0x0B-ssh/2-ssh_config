@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# this is the configurating to connect to a server with no passwd
+
+Host *
+    PasswordAuthentication no
+    IdentifyFile ~/.ssh/school
+    SendEnv LANG LC_*
+    HashKnownHosts yes
+    GSSAPIAuthenticatin yes
+    GSSSAPIDelegateCredentials no
