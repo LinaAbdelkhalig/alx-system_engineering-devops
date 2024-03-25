@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # this file manages a ssh config
 
-file { '/home/ubuntu/.ssh/config':
+file { '/etc/ssh/ssh_config':
   ensure  => file,
   owner   => 'ubuntu',
   group   => 'ubuntu',
