@@ -2,33 +2,22 @@
 # install and configure nginx
 # set up a default page
 
-# update the packaage list
-sudo apt-get update
-
-# install nginx
-sudo apt-get install -y nginx
+# update the packaage list and install nginx
+echo -e "Update and install Nginx\n"
+sudo apt-get update -y -qq && sudo apt-get install nginx -y
 
 # start nginx
 sudo service nginx start
+sudo ufw allow 'Nginx HTTP'
 
-# check if it's running
-if ! pgrep -x "nginx" > /dev/null
-then
-    echo "nginx failed to start, Exiting."
-    exit 1
-fi
+# set the website files ownership
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chown -R 755 /var/ww
 
 # create a default page
-echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
+echo "Hello World!" | dd status=none of=/var/www/html/index.nginx-debian.html
 
 # ensure nginx picks up the changes
-sudo service nginx reload
-
-# check if it's still running
-if ! pgrep -x "nginx" > /dev/null
-then
-    echo "nginx failed to reload. Exiting."
-    exit 1
-fi
+sudo service nginx restart
 
 echo "nginx installed and configured successfully."
