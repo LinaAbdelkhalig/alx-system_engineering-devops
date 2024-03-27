@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# install and configure nginx
+# set up a default page
+
+# update the packaage list
+sudo apt-get update
+
+# install nginx
+sudo apt-get install -y nginx
+
+# start nginx
+sudo service nginx start
+
+# check if it's running
+if ! pgrep -x "nginx" > /dev/null
+then
+    echo "nginx failed to start, Exiting."
+    exit 1
+fi
+
+# create a default page
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
+
+# ensure nginx picks up the changes
+sudo service nginx reload
+
+# check if it's still running
+if ! pgrep -x "nginx" > /dev/null
+then
+    echo "nginx failed to reload. Exiting."
+    exit 1
+fi
+
+echo "nginx installed and configured successfully."
