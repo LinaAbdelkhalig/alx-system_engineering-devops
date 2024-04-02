@@ -39,7 +39,7 @@ frontend clickviral-tech-frontend
 
 backend clickviral-tech-backend
     balance roundrobin
-    server 515104-web-01 100.25.137:80 check
+    server 515104-web-01 100.25.137.241:80 check
     server 515104-web-02 54.236.17.37:80 check
 "
 
