@@ -1,4 +1,4 @@
-#!usr/bin/env bash
+#!/usr/bin/env bash
 # this script prints the domains and subdomains
 
 print_dom_subdom () {
