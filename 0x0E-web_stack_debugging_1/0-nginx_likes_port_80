@@ -4,4 +4,4 @@
 # remoce the default nginx config file
 rm /etc/nginx/sites=enabled/default
 # configures nginx to listen on port 80 for all active ipv4 ips
-ls -s /etc/nginx/sites=available/default /etc/nginx/sites=enabled/defaultservice nginx restart
+ln -s /etc/nginx/sites=available/default /etc/nginx/sites=enabled/defaultservice nginx restart
