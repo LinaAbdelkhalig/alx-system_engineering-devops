@@ -33,11 +33,11 @@ defaults
   timeout server 15s
   timeout http-request 10s
 
-frontend clickviral-tech-frontend
+frontend mylina-tech-frontend
     bind *:80
-    default_backend clickviral-tech-backend
+    default_backend mylina-tech-backend
 
-backend clickviral-tech-backend
+backend mylina-tech-backend
     balance roundrobin
     server 515104-web-01 100.26.224.54:80 check
     server 515104-web-02 18.234.169.144:80 check
