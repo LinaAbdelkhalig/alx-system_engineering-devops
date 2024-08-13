@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This script uses a rest api and returns information about an employee
+this script fetches the employee's todo data and converts it into json
 """
 
 import json
@@ -8,7 +8,7 @@ import requests
 import sys
 
 
-def get_employee_todo(emp_id):
+def export_to_JSON(emp_id):
     # Fetch user data
     user_url = f"https://jsonplaceholder.typicode.com/users/{emp_id}"
     user_response = requests.get(user_url)
@@ -19,16 +19,16 @@ def get_employee_todo(emp_id):
     todos_response = requests.get(todos_url)
     todos_data = todos_response.json()
 
-    # Extract employee name
-    emp_name = user_data.get('name')
+    # Extract employee username
+    employee_username = user_data.get('username')
 
-   # Prepare the data for JSON export
+    # Prepare the data for JSON export
     todo_list = []
     for todo in todos_data:
         todo_item = {
             "task": todo.get('title'),
             "completed": todo.get('completed'),
-            "username": emp_name
+            "username": employee_username
         }
         todo_list.append(todo_item)
 
@@ -42,8 +42,8 @@ def get_employee_todo(emp_id):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: ./1-export_to_CSV.py <employee_id>")
+        print("Usage: ./2-export_to_JSON.py <emp_id>")
         sys.exit(1)
 
     emp_id = int(sys.argv[1])
-    get_employee_todo(emp_id)
+    export_to_JSON(emp_id)
