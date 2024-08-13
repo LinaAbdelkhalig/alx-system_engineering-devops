@@ -30,4 +30,4 @@ def top_ten(subreddit):
             title = post.get("data", {}).get("title", "")
             print(f"{i + 1}. {title}")
     else:
-        print(None)
+        return None
