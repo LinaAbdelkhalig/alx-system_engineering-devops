@@ -1,0 +1,39 @@
+server {
+                listen 80 default_server;
+                listen [::]:80 default_server;
+
+                # use the ip of th server as domain name
+                server_name 100.26.224.54
+
+                # customize http response header
+                add_header X-Served-By 515104-web-01;
+
+                # server /airbnb-onepage/ route on AirBnB_clone_v3
+                location = /airbnb-onepage/ {
+                    proxy_pass http://127.0.0.1:5000/airbnb-onepage/;
+                }
+
+                # serve /number_odd_or_even/ route on AirBnB_clone_v3
+                location ~ ^/airbnb-dynamic/number_odd_or_even/(\d+)$ {
+                    proxy_pass http://127.0.0.1:5001/number_odd_or_even/$1
+                }
+
+                # serve airbnb_clone_v3 api
+                location /api {
+                    proxy_pass http://127.0.0.1:5002/api;
+                }
+
+                location / {
+                        try_files $uri $uri/ =404;
+                }
+
+                if ($request_filename ~ redirect_me){
+                        rewrite ^ https://th3-gr00t.tk/ permanent;
+                }
+
+                error_page 404 /error_404.html;
+                location = /error_404.html {
+                        internal;
+                }
+}
+
